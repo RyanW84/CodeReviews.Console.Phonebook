@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PointOfSale.EntityFramework.RyanW84;
+namespace Phonebook.RyanW84;
 
 internal class Enums
     {
@@ -38,6 +38,8 @@ internal class Enums
         DeleteContact,
         [Display(Name = "Update Contact")]
         UpdateContact,
+        [Display(Name = "Email Contact")]
+        EmailContact,
         [Display(Name = "View Contact")]
         ViewContact,
         [Display(Name = "View All Contacts")]

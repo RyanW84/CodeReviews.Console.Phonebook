@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Phonebook.RyanW84.Models;
+using Phonebook.RyanW84.DataConnection;
 
-using PointOfSale.EntityFramework.EntityFramework;
-using PointOfSale.EntityFramework.RyanW84.Models;
-
-namespace PointOfSale.EntityFramework.RyanW84.Controllers;
+namespace Phonebook.RyanW84.Controllers;
 
 internal class CategoryController
     {

@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Phonebook.RyanW84.Models;
+using Phonebook.RyanW84.DataConnection;
 
-using PointOfSale.EntityFramework.EntityFramework;
-using PointOfSale.EntityFramework.RyanW84.Models;
-
-namespace PointOfSale.EntityFramework.RyanW84.Controllers;
+namespace Phonebook.RyanW84.Controllers;
 
 internal class ContactController
     {
@@ -35,7 +34,7 @@ internal class ContactController
         {
         using var db = new PhonebookDBContext();
         var contact = db.Contacts
-        .Include(x=>x.Category)
+        .Include(x => x.Category)
         .SingleOrDefault(x => x.ContactId == id);
 
         return contact;
@@ -46,7 +45,7 @@ internal class ContactController
         using var db = new PhonebookDBContext();
 
         var contacts = db.Contacts
-        .Include(x=>x.Category)
+        .Include(x => x.Category)
         .ToList();
 
         return contacts;

@@ -1,9 +1,9 @@
-﻿using PointOfSale.EntityFramework.RyanW84.Controllers;
-using PointOfSale.EntityFramework.RyanW84.Models;
+﻿using Phonebook.RyanW84.Controllers;
+using Phonebook.RyanW84.Models;
 
 using Spectre.Console;
 
-namespace PointOfSale.EntityFramework.RyanW84.Services;
+namespace Phonebook.RyanW84.Services;
 
 internal class CategoryService
     {

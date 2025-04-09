@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
-using PointOfSale.EntityFramework.RyanW84.Models;
-using PointOfSale.EntityFramework.RyanW84.Services;
-
+using Phonebook.RyanW84.Models;
+using Phonebook.RyanW84.Services;
 using Spectre.Console;
+using static Phonebook.RyanW84.Enums;
 
-using static PointOfSale.EntityFramework.RyanW84.Enums;
-
-namespace PointOfSale.EntityFramework.RyanW84;
+namespace Phonebook.RyanW84;
 
 static internal class UserInterface
     {
@@ -42,7 +39,7 @@ static internal class UserInterface
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<MainMenuOptions>()
-                    .Title("Welcome to E.P.O.S\nWhat would you like to do?")
+                    .Title("Welcome to Phonebook\nWhat would you like to do?")
                     .AddChoices(Enum.GetValues(typeof(MainMenuOptions)).Cast<MainMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
@@ -135,6 +132,9 @@ static internal class UserInterface
                 ContactService.DeleteContact();
                 break;
                 case ContactMenu.UpdateContact:
+                ContactService.UpdateContact();
+                break;
+                case ContactMenu.EmailContact:
                 ContactService.UpdateContact();
                 break;
                 case ContactMenu.ViewContact:

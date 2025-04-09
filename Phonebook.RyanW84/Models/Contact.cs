@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using IndexAttribute = Microsoft.EntityFrameworkCore.IndexAttribute;
+using Microsoft.EntityFrameworkCore;
 
-namespace PointOfSale.EntityFramework.RyanW84.Models;
+namespace Phonebook.RyanW84.Models;
 
 [Index(nameof(Name), IsUnique = true)]
 internal class Contact

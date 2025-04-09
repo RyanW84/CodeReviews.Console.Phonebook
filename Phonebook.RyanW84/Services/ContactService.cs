@@ -1,9 +1,11 @@
-﻿using PointOfSale.EntityFramework.RyanW84.Controllers;
-using PointOfSale.EntityFramework.RyanW84.Models;
+﻿using Phonebook.RyanW84.API;
+using Phonebook.RyanW84.Controllers;
+using Phonebook.RyanW84.Models;
+using Phonebook.RyanW84.Validators;
 
 using Spectre.Console;
 
-namespace PointOfSale.EntityFramework.RyanW84.Services;
+namespace Phonebook.RyanW84.Services;
 
 internal class ContactService
     {
@@ -11,12 +13,31 @@ internal class ContactService
         {
         var contact = new Contact();
         contact.Name = AnsiConsole.Ask<string>("Contact's name:");
-        contact.PhoneNumber = AnsiConsole.Ask<string>("Contact's phone number:");
-        contact.EmailAddress = AnsiConsole.Ask<string>("Contact's phone number:");
+        contact.PhoneNumber = AnsiConsole.Ask<string>("Contact's phone number:(format +441234567891)");
+        contact.EmailAddress = AnsiConsole.Ask<string>("Contact's E-mail address:");
         contact.CategoryId = CategoryService.
        GetCategoryOptionInput().CategoryId;
 
-        ContactController.AddContact(contact);
+        //Validation
+        var phoneValidationResult = ContactValidator.isPhoneNumberValid(contact.PhoneNumber);
+
+        while (!phoneValidationResult)
+            {
+            Console.WriteLine("Please check the Phone Number is correct - press any key to try again\n");
+            contact.PhoneNumber = AnsiConsole.Ask<string>("Contact's phone number:(format +441234567891)");
+            phoneValidationResult = ContactValidator.isPhoneNumberValid(contact.PhoneNumber);
+            }
+
+        var emailValidationResult = ContactValidator.isEmailAddressValid(contact.EmailAddress);
+
+        while (!emailValidationResult)
+            {
+            Console.WriteLine("Please check the E-mail Address is correct - press any key to try again\n");
+            contact.PhoneNumber = AnsiConsole.Ask<string>("Contact's E-mail address");
+            emailValidationResult = ContactValidator.isEmailAddressValid(contact.EmailAddress);
+            }
+
+            ContactController.AddContact(contact);
         }
     internal static void DeleteContact()
         {
@@ -38,9 +59,15 @@ internal class ContactService
       AnsiConsole.Ask<string>("Contact's new E-mail address: ")
       : contact.EmailAddress;
         contact.Category = AnsiConsole.Confirm("Update Category?") ?
-        CategoryService.GetCategoryOptionInput() : contact.Category; 
+        CategoryService.GetCategoryOptionInput() : contact.Category;
 
         ContactController.UpdateContact(contact);
+        }
+
+        internal static void EmailContact()
+        {
+        var contact = GetContactOptionInput();
+        EmailAPI.Email(contact);
         }
     internal static void GetContact()
         {
