@@ -16,14 +16,18 @@ internal class EmailAPI
     internal static void Email(Contact contact)
         {
         var email = new MimeMessage();
+        Console.WriteLine("Plese enter the Subject line");
+        var subject = Console.ReadLine();
+        Console.WriteLine("Please type your email here (HTML Friendly)");
+        var body = Console.ReadLine();
 
         email.From.Add(new MailboxAddress("Ryan Weavers", "ryanweavers@gmail.com"));
         email.To.Add(new MailboxAddress(contact.Name, contact.EmailAddress));
 
-        email.Subject = "Testing out email sending";
+        email.Subject = $"{subject}";
         email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
-            Text = "<b>Hello all the way from the land of C#</b>"
+            Text = $"{body}"
             };
 
         using (var smtp = new SmtpClient())

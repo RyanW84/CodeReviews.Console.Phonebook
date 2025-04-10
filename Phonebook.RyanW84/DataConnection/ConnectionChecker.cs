@@ -27,8 +27,13 @@ internal static class ConnectionChecker
             {
             using var connection = _dbContext.Database.GetDbConnection();
             connection.Open();
-            Console.WriteLine("Database connection successful! Press any key to continue");
-            Console.ReadKey();
+            for (int i = 0; i <= 100; i++)
+                {
+                Console.Write($"\rPhonebook App: {i}% loaded");
+                Thread.Sleep(10); //10ms per iteration
+                }
+            Console.WriteLine("\nDatabase connection successful!");
+            Thread.Sleep(1000);
             }
         catch (SqlException ex)
             {

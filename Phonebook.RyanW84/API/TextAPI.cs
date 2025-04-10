@@ -28,8 +28,10 @@ namespace Phonebook.RyanW84.API
                 from: new Twilio.Types.PhoneNumber("+447367181284"), // virtual Twilio number
                 to: new Twilio.Types.PhoneNumber(contact.PhoneNumber) // On a Twilio Trial account - the number has to be verified in the account under caller ID
             );
-
+            Console.Write("Here is your message: ");
             Console.WriteLine(message.Body);
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
             }
         }
     }
