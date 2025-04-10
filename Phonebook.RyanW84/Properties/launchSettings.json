@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "PointOfSale.RyanW84": {
+    "Phonebook.RyanW84": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\Ryanw\\OneDrive\\Documents\\GitHub\\CONSOLE.PointOfSale\\PointOfSale.RyanW84"
+      "workingDirectory": "C:\\Users\\Ryanw\\OneDrive\\Documents\\GitHub\\CodeReviews.Console.Phonebook\\Phonebook.RyanW84"
     }
   }
 }

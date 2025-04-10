@@ -1,10 +1,4 @@
-﻿using LanguageExt;
-using LanguageExt.Common;
-using System;
-using System.Text.RegularExpressions;
-
-using Phonebook.RyanW84.Models;
-using System.ComponentModel.Design;
+﻿using System.Text.RegularExpressions;
 
 namespace Phonebook.RyanW84.Validators;
 

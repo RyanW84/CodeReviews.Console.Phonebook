@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Phonebook.RyanW84.Models;
+
 using Phonebook.RyanW84.DataConnection;
+using Phonebook.RyanW84.Models;
 
 namespace Phonebook.RyanW84.Controllers;
 

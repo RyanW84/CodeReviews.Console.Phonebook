@@ -1,15 +1,18 @@
-﻿using System;
-
+﻿
 using MailKit.Net.Smtp;
-using MailKit;
+
+using Microsoft.Extensions.Configuration;
+
 using MimeKit;
-using Phonebook.RyanW84;
+
 using Phonebook.RyanW84.Models;
+
 
 namespace Phonebook.RyanW84.API;
 
 internal class EmailAPI
     {
+
     internal static void Email(Contact contact)
         {
         var email = new MimeMessage();
@@ -27,8 +30,16 @@ internal class EmailAPI
             {
             smtp.Connect("smtp.gmail.com", 587, false);
 
+            var secretAppSettingsReader = new SecretAppsettingReader();
+
+            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+
+            IConfiguration configuration = configurationBuilder.AddUserSecrets<EmailAPI>().Build();
+
+            var smtp_username = configuration.GetSection("EmailAPI")["Email:smtp_username"];
+            var smtp_password = configuration.GetSection("EmailAPI")["Email:smtp_password"];
             // Note: only needed if the SMTP server requires authentication
-            smtp.Authenticate("smtp_username", "smtp_password");
+            smtp.Authenticate(smtp_username, smtp_password);
 
             smtp.Send(email);
             smtp.Disconnect(true);

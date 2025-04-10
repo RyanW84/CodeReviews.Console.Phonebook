@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Phonebook.RyanW84;
+namespace Phonebook.RyanW84.UserInterface;
 
 internal class Enums
     {
@@ -40,6 +40,8 @@ internal class Enums
         UpdateContact,
         [Display(Name = "Email Contact")]
         EmailContact,
+        [Display(Name = "Text Contact")]
+        TextContact,
         [Display(Name = "View Contact")]
         ViewContact,
         [Display(Name = "View All Contacts")]

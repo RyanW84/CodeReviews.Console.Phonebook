@@ -42,12 +42,12 @@ internal class CategoryService
     internal static void GetCategories()
         {
         var categories = CategoryController.GetCategories();
-        UserInterface.ShowCategoryTable(categories);
+        UserInterface.UserInterface.ShowCategoryTable(categories);
         }
-  internal static void GetCategory()
+    internal static void GetCategory()
         {
-        var category =GetCategoryOptionInput();
-        UserInterface.ShowCategory(category);
+        var category = GetCategoryOptionInput();
+        UserInterface.UserInterface.ShowCategory(category);
         }
     }
 

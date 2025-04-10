@@ -37,7 +37,7 @@ internal class ContactService
             emailValidationResult = ContactValidator.isEmailAddressValid(contact.EmailAddress);
             }
 
-            ContactController.AddContact(contact);
+        ContactController.AddContact(contact);
         }
     internal static void DeleteContact()
         {
@@ -64,7 +64,7 @@ internal class ContactService
         ContactController.UpdateContact(contact);
         }
 
-        internal static void EmailContact()
+    internal static void EmailContact()
         {
         var contact = GetContactOptionInput();
         EmailAPI.Email(contact);
@@ -72,14 +72,14 @@ internal class ContactService
     internal static void GetContact()
         {
         var contact = GetContactOptionInput();
-        UserInterface.ShowContact(contact);
+        UserInterface.UserInterface.ShowContact(contact);
         }
     internal static void GetContacts()
         {
         var contacts = ContactController.GetContacts();
-        UserInterface.ShowContactTable(contacts);
+        UserInterface.UserInterface.ShowContactTable(contacts);
         }
-    static private Contact GetContactOptionInput()
+    internal static Contact GetContactOptionInput()
         {
         var contacts = ContactController.GetContacts();
         var contactsArray = contacts.Select(x => x.Name).ToArray();

@@ -1,14 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 using Phonebook.RyanW84.Models;
 using Phonebook.RyanW84.Services;
-using Spectre.Console;
-using static Phonebook.RyanW84.Enums;
 
-namespace Phonebook.RyanW84;
+using Spectre.Console;
+
+using static Phonebook.RyanW84.UserInterface.Enums;
+
+namespace Phonebook.RyanW84.UserInterface;
 
 static internal class UserInterface
     {
-
 
     //Menu Methods
     private static string GetEnumDisplayName(Enum enumValue) //Enums weren't showing their display name, this fixes it
@@ -125,25 +127,28 @@ static internal class UserInterface
 
             switch (usersChoice)
                 {
-                case ContactMenu.AddContact:
+                case Enums.ContactMenu.AddContact:
                 ContactService.InsertContact();
                 break;
-                case ContactMenu.DeleteContact:
+                case Enums.ContactMenu.DeleteContact:
                 ContactService.DeleteContact();
                 break;
-                case ContactMenu.UpdateContact:
+                case Enums.ContactMenu.UpdateContact:
                 ContactService.UpdateContact();
                 break;
-                case ContactMenu.EmailContact:
-                ContactService.UpdateContact();
+                case Enums.ContactMenu.EmailContact:
+                API.EmailAPI.Email(ContactService.GetContactOptionInput());
                 break;
-                case ContactMenu.ViewContact:
+                case Enums.ContactMenu.TextContact:
+                API.TextAPI.Text(ContactService.GetContactOptionInput());
+                break;
+                case Enums.ContactMenu.ViewContact:
                 ContactService.GetContact();
                 break;
-                case ContactMenu.ViewAllContacts:
+                case Enums.ContactMenu.ViewAllContacts:
                 ContactService.GetContacts();
                 break;
-                case ContactMenu.GoBack:
+                case Enums.ContactMenu.GoBack:
                 isProductMenuRunning = false;
                 break;
                 default:
