@@ -5,11 +5,13 @@ internal class Enums
     {
     internal enum MainMenuOptions
         {
-        [Display(Name = "Manage Person")]
+        [Display(Name = "[DarkSeaGreen2_1]Manage Person[/]")]
         ManagePersons,
-        [Display(Name = "Manage Categories")]
+        [Display(Name = "[Gold1]Manage Categories[/]")]
         ManageCategories,
-        [Display(Name = "Quit")]
+        [Display(Name = "[DarkOrange]Communications Menu[/]")]
+        Communications,
+        [Display(Name = "[Red3_1]Quit[/]")]
         Quit
         }
     internal enum PersonMenuOptions
@@ -20,10 +22,6 @@ internal class Enums
         DeletePerson,
         [Display(Name = "Update Person")]
         UpdatePerson,
-        [Display(Name = "Email Person")]
-        EmailPerson,
-        [Display(Name = "Text Person")]
-        TextPerson,
         [Display(Name = "View Person")]
         ViewPerson,
         [Display(Name = "View All Persons")]
@@ -48,11 +46,11 @@ internal class Enums
         }
     internal enum ContactMenuOptions
         {
-        [Display(Name = "[green]Text a contact[/]")]
+        [Display(Name = "[DarkSeaGreen2_1]Text a contact[/]")]
         Text,
-        [Display(Name = "Email a contact")]
+        [Display(Name = "[Gold1]Email a contact[/]")]
         Email,
-        [Display(Name = "Go Back")]
+        [Display(Name = "[Red]Go Back[/]")]
         GoBack
         }
     }

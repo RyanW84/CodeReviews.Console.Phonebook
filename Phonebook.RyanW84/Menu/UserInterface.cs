@@ -4,7 +4,6 @@ using Phonebook.RyanW84.Models;
 using Phonebook.RyanW84.Services;
 
 using Spectre.Console;
-using Spectre.Console.Rendering;
 
 using static Phonebook.RyanW84.UserInterface.Enums;
 
@@ -41,7 +40,7 @@ static internal class UserInterface
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<MainMenuOptions>()
-                    .Title("Welcome to Phonebook\nWhat would you like to do?")
+                    .Title("[Bold]Welcome to Phonebook\nWhat would you like to do?[/]")
                     .AddChoices(Enum.GetValues(typeof(MainMenuOptions)).Cast<MainMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
@@ -53,6 +52,9 @@ static internal class UserInterface
                 break;
                 case MainMenuOptions.ManagePersons:
                 PersonMenu();
+                break;
+                case MainMenuOptions.Communications:
+                ContactMenu();
                 break;
                 case MainMenuOptions.Quit:
                 isMenuRunning = false;
@@ -91,12 +93,6 @@ static internal class UserInterface
                 break;
                 case Enums.PersonMenuOptions.UpdatePerson:
                 PersonService.UpdatePerson();
-                break;
-                case Enums.PersonMenuOptions.EmailPerson:
-                API.EmailPerson.Email(PersonService.GetPersonOptionInput());
-                break;
-                case Enums.PersonMenuOptions.TextPerson:
-                API.TextPerson.Text(PersonService.GetPersonOptionInput());
                 break;
                 case Enums.PersonMenuOptions.ViewPerson:
                 PersonService.GetPerson();
@@ -158,13 +154,48 @@ static internal class UserInterface
             }
         }
 
+    internal static void ContactMenu()
+        {
+        bool isContactMenuRunning = true;
+
+        while (isContactMenuRunning)
+            {
+            Console.Clear();
+            var usersChoice = AnsiConsole.Prompt(
+                new SelectionPrompt<ContactMenuOptions>()
+                    .Title("[Bold]Welcome to Phonebook\nWhat would you like to do?[/]")
+                    .AddChoices(Enum.GetValues(typeof(ContactMenuOptions)).Cast<ContactMenuOptions>())
+                    .UseConverter(choice => GetEnumDisplayName(choice))
+            );
+
+            switch (usersChoice)
+                {
+
+                case Enums.ContactMenuOptions.Email:
+                API.EmailPerson.Email(PersonService.GetPersonOptionInput());
+                break;
+                case Enums.ContactMenuOptions.Text:
+                API.TextPerson.Text(PersonService.GetPersonOptionInput());
+                break;
+                case Enums.ContactMenuOptions.GoBack:
+                isContactMenuRunning = false;
+                break;
+                default:
+                Console.Write("Please choose a valid option (Press Any Key to continue:");
+                Console.ReadLine();
+                PersonMenu();
+                break;
+                }
+            }
+        }
+
     //Helpers
     internal static void ShowPerson(Person person)
         {
         var panel = new Panel($"ID: {person.PersonId} \nName: {person.Name} \nPhone Number: {person.PhoneNumber} \nE-mail Address: {person.EmailAddress} \nCategory: {person.Category.Name}");
         panel.Header = new PanelHeader("** Contact Info **").Centered();
         panel.Padding = new Padding(2, 2, 2, 2);
-        panel.Border=BoxBorder.Heavy;
+        panel.Border = BoxBorder.Heavy;
 
         AnsiConsole.Write(panel);
         Console.WriteLine("Press any key to return to Main Menu");
@@ -222,7 +253,7 @@ static internal class UserInterface
         panel.Header = new PanelHeader($"** {category.Name} **").Centered();
         panel.Padding = new Padding(2, 2, 2, 2);
         panel.Border = BoxBorder.Rounded;
-        
+
 
         AnsiConsole.Write(panel);
 
