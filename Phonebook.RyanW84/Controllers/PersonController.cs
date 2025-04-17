@@ -5,23 +5,23 @@ using Phonebook.RyanW84.Models;
 
 namespace Phonebook.RyanW84.Controllers;
 
-internal class ContactController
+internal class PersonController
     {
-    internal static void AddContact(Contact contact)
+    internal static void AddPerson(Person person)
         {
 
         using var db = new PhonebookDBContext();
-        db.Add(contact);
+        db.Add(person);
         db.SaveChanges();
         }
 
-    internal static void DeleteContact(Contact contact)
+    internal static void DeletePerson(Person person)
         {
         using var db = new PhonebookDBContext();
-        db.Remove(contact);
+        db.Remove(person);
         db.SaveChanges();
         }
-    internal static void UpdateContact(Contact contact)
+    internal static void UpdatePerson(Person contact)
         {
         using var db = new PhonebookDBContext();
 
@@ -30,26 +30,24 @@ internal class ContactController
         db.SaveChanges();
         }
 
-
-    internal static Contact GetContactById(int id)
+    internal static Person GetContactById(int id)
         {
         using var db = new PhonebookDBContext();
-        var contact = db.Contacts
+        var person = db.Person
         .Include(x => x.Category)
-        .SingleOrDefault(x => x.ContactId == id);
+        .SingleOrDefault(x => x.PersonId == id);
 
-        return contact;
+        return person;
         }
-
-    internal static List<Contact> GetContacts()
+    internal static List<Person> GetPersons()
         {
         using var db = new PhonebookDBContext();
 
-        var contacts = db.Contacts
+        var persons = db.Person
         .Include(x => x.Category)
         .ToList();
 
-        return contacts;
+        return persons;
         }
     }
 

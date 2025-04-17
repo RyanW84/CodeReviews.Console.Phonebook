@@ -2,12 +2,12 @@
 
 namespace Phonebook.RyanW84.Validators;
 
-internal class ContactValidator
+public class ContactValidator
     {
-    internal const string phoneMotif = @"^\+[1-9]\d{1,14}$";
-    internal const string emailMotif = @"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+";
+    public const string phoneMotif = @"^\+[1-9]\d{1,14}$";
+    public const string emailMotif = @"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+";
 
-    internal static bool isPhoneNumberValid(string phoneNumber)
+    public static bool isPhoneNumberValid(string phoneNumber)
         {
         if (phoneNumber != null)
             {
@@ -17,7 +17,7 @@ internal class ContactValidator
             return false;
         }
 
-    internal static bool isEmailAddressValid(string emailAddress)
+    public static bool isEmailAddressValid(string emailAddress)
         {
         if (emailAddress != null)
             {

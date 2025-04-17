@@ -1,20 +1,37 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Phonebook.RyanW84.UserInterface;
-
 internal class Enums
     {
     internal enum MainMenuOptions
         {
+        [Display(Name = "Manage Person")]
+        ManagePersons,
         [Display(Name = "Manage Categories")]
         ManageCategories,
-        [Display(Name = "Manage Contacts")]
-        ManageContacts,
         [Display(Name = "Quit")]
         Quit
         }
-
-    internal enum CategoryMenu
+    internal enum PersonMenuOptions
+        {
+        [Display(Name = "Add Person")]
+        AddPerson,
+        [Display(Name = "Delete Person")]
+        DeletePerson,
+        [Display(Name = "Update Person")]
+        UpdatePerson,
+        [Display(Name = "Email Person")]
+        EmailPerson,
+        [Display(Name = "Text Person")]
+        TextPerson,
+        [Display(Name = "View Person")]
+        ViewPerson,
+        [Display(Name = "View All Persons")]
+        ViewAllPersons,
+        [Display(Name = "Go Back")]
+        GoBack
+        }
+    internal enum CategoryMenuOptions
         {
         [Display(Name = "Add Category")]
         AddCategory,
@@ -29,23 +46,12 @@ internal class Enums
         [Display(Name = "Go Back")]
         GoBack
         }
-
-    internal enum ContactMenu
+    internal enum ContactMenuOptions
         {
-        [Display(Name = "Add Contact")]
-        AddContact,
-        [Display(Name = "Delete Contact")]
-        DeleteContact,
-        [Display(Name = "Update Contact")]
-        UpdateContact,
-        [Display(Name = "Email Contact")]
-        EmailContact,
-        [Display(Name = "Text Contact")]
-        TextContact,
-        [Display(Name = "View Contact")]
-        ViewContact,
-        [Display(Name = "View All Contacts")]
-        ViewAllContacts,
+        [Display(Name = "[green]Text a contact[/]")]
+        Text,
+        [Display(Name = "Email a contact")]
+        Email,
         [Display(Name = "Go Back")]
         GoBack
         }

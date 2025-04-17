@@ -1,19 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace Phonebook.RyanW84.Models;
-
-[Index(nameof(Name), IsUnique = true)]
+﻿namespace Phonebook.RyanW84.Models;
 
 internal class Category
     {
-    [Key]
+
     public int CategoryId { get; set; }
 
-    [Required]
+
     public string Name { get; set; }
 
-    public List<Contact> Contacts { get; set; }
+    public ICollection<Person> Persons { get; set; }
     }
 

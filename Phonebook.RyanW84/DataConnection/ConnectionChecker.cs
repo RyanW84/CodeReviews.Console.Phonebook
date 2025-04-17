@@ -5,11 +5,11 @@ namespace Phonebook.RyanW84.DataConnection;
 
 internal static class ConnectionChecker
     {
-    internal static DbContext? _dbContext;
+   
+    internal static DbContext? _dbContext; 
 
     static ConnectionChecker()
         {
-        // Initialize the DbContext
         _dbContext = new PhonebookDBContext();
         }
 
@@ -22,7 +22,6 @@ internal static class ConnectionChecker
             Console.ReadKey();
             return;
             }
-
         try
             {
             using var connection = _dbContext.Database.GetDbConnection();
@@ -30,10 +29,10 @@ internal static class ConnectionChecker
             for (int i = 0; i <= 100; i++)
                 {
                 Console.Write($"\rPhonebook App: {i}% loaded");
-                Thread.Sleep(10); //10ms per iteration
+                Thread.Sleep(5); //5ms per iteration
                 }
             Console.WriteLine("\nDatabase connection successful!");
-            Thread.Sleep(1000);
+            Thread.Sleep(900);
             }
         catch (SqlException ex)
             {

@@ -4,6 +4,7 @@ using Phonebook.RyanW84.Models;
 using Phonebook.RyanW84.Services;
 
 using Spectre.Console;
+using Spectre.Console.Rendering;
 
 using static Phonebook.RyanW84.UserInterface.Enums;
 
@@ -29,7 +30,6 @@ static internal class UserInterface
 
         return displayAttribute != null ? displayAttribute.Name : enumValue.ToString();
         }
-
     internal static void MainMenu()
         {
         Console.Clear();
@@ -51,12 +51,12 @@ static internal class UserInterface
                 case MainMenuOptions.ManageCategories:
                 CategoriesMenu();
                 break;
-                case MainMenuOptions.ManageContacts:
-                ProductsMenu();
+                case MainMenuOptions.ManagePersons:
+                PersonMenu();
                 break;
                 case MainMenuOptions.Quit:
                 isMenuRunning = false;
-                Console.WriteLine("Thank you for using our E.P.O.S App");
+                Console.WriteLine("Thank you for using my Phonebook App");
                 break;
                 default:
                 Console.WriteLine("Please enter a correct option");
@@ -67,7 +67,54 @@ static internal class UserInterface
                 }
             }
         }
+    internal static void PersonMenu()
+        {
+        bool isProductMenuRunning = true;
 
+        while (isProductMenuRunning)
+            {
+            Console.Clear();
+            var usersChoice = AnsiConsole.Prompt(
+                new SelectionPrompt<PersonMenuOptions>()
+                    .Title("Welcome to Phonebook\nWhat would you like to do?")
+                    .AddChoices(Enum.GetValues(typeof(PersonMenuOptions)).Cast<PersonMenuOptions>())
+                    .UseConverter(choice => GetEnumDisplayName(choice))
+            );
+
+            switch (usersChoice)
+                {
+                case Enums.PersonMenuOptions.AddPerson:
+                PersonService.InsertPerson();
+                break;
+                case Enums.PersonMenuOptions.DeletePerson:
+                PersonService.DeletePerson();
+                break;
+                case Enums.PersonMenuOptions.UpdatePerson:
+                PersonService.UpdatePerson();
+                break;
+                case Enums.PersonMenuOptions.EmailPerson:
+                API.EmailPerson.Email(PersonService.GetPersonOptionInput());
+                break;
+                case Enums.PersonMenuOptions.TextPerson:
+                API.TextPerson.Text(PersonService.GetPersonOptionInput());
+                break;
+                case Enums.PersonMenuOptions.ViewPerson:
+                PersonService.GetPerson();
+                break;
+                case Enums.PersonMenuOptions.ViewAllPersons:
+                PersonService.GetPersons();
+                break;
+                case Enums.PersonMenuOptions.GoBack:
+                isProductMenuRunning = false;
+                break;
+                default:
+                Console.Write("Please choose a valid option (Press Any Key to continue:");
+                Console.ReadLine();
+                PersonMenu();
+                break;
+                }
+            }
+        }
     internal static void CategoriesMenu()
         {
         bool isCategoryMenuRunning = true;
@@ -76,30 +123,30 @@ static internal class UserInterface
             {
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<CategoryMenu>()
-                    .Title("Welcome to E.P.O.S\nWhat would you like to do?")
-                    .AddChoices(Enum.GetValues(typeof(CategoryMenu)).Cast<CategoryMenu>())
+                new SelectionPrompt<CategoryMenuOptions>()
+                    .Title("Welcome to Phonebook\nWhat would you like to do?")
+                    .AddChoices(Enum.GetValues(typeof(CategoryMenuOptions)).Cast<CategoryMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
 
             switch (usersChoice)
                 {
-                case CategoryMenu.AddCategory:
+                case CategoryMenuOptions.AddCategory:
                 CategoryService.InsertCategory();
                 break;
-                case CategoryMenu.DeleteCategory:
+                case CategoryMenuOptions.DeleteCategory:
                 CategoryService.DeleteCategory();
                 break;
-                case CategoryMenu.UpdateCategory:
+                case CategoryMenuOptions.UpdateCategory:
                 CategoryService.UpdateCategory();
                 break;
-                case CategoryMenu.ViewCategory:
+                case CategoryMenuOptions.ViewCategory:
                 CategoryService.GetCategory();
                 break;
-                case CategoryMenu.ViewAllCategories:
+                case CategoryMenuOptions.ViewAllCategories:
                 CategoryService.GetCategories();
                 break;
-                case CategoryMenu.GoBack:
+                case CategoryMenuOptions.GoBack:
                 isCategoryMenuRunning = false;
                 break;
                 default:
@@ -111,85 +158,38 @@ static internal class UserInterface
             }
         }
 
-    internal static void ProductsMenu()
+    //Helpers
+    internal static void ShowPerson(Person person)
         {
-        bool isProductMenuRunning = true;
-
-        while (isProductMenuRunning)
-            {
-            Console.Clear();
-            var usersChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<ContactMenu>()
-                    .Title("Welcome to E.P.O.S\nWhat would you like to do?")
-                    .AddChoices(Enum.GetValues(typeof(ContactMenu)).Cast<ContactMenu>())
-                    .UseConverter(choice => GetEnumDisplayName(choice))
-            );
-
-            switch (usersChoice)
-                {
-                case Enums.ContactMenu.AddContact:
-                ContactService.InsertContact();
-                break;
-                case Enums.ContactMenu.DeleteContact:
-                ContactService.DeleteContact();
-                break;
-                case Enums.ContactMenu.UpdateContact:
-                ContactService.UpdateContact();
-                break;
-                case Enums.ContactMenu.EmailContact:
-                API.EmailAPI.Email(ContactService.GetContactOptionInput());
-                break;
-                case Enums.ContactMenu.TextContact:
-                API.TextAPI.Text(ContactService.GetContactOptionInput());
-                break;
-                case Enums.ContactMenu.ViewContact:
-                ContactService.GetContact();
-                break;
-                case Enums.ContactMenu.ViewAllContacts:
-                ContactService.GetContacts();
-                break;
-                case Enums.ContactMenu.GoBack:
-                isProductMenuRunning = false;
-                break;
-                default:
-                Console.Write("Please choose a valid option (Press Any Key to continue:");
-                Console.ReadLine();
-                ProductsMenu();
-                break;
-                }
-            }
-        }
-
-    internal static void ShowContact(Contact contact)
-        {
-        var panel = new Panel($"ID: {contact.ContactId} \nName: {contact.Name} \nPhone Number: {contact.PhoneNumber} \nE-mail Address: {contact.EmailAddress} \nCategory: {contact.Category.Name}");
-        panel.Header = new PanelHeader("** Contact Info **");
+        var panel = new Panel($"ID: {person.PersonId} \nName: {person.Name} \nPhone Number: {person.PhoneNumber} \nE-mail Address: {person.EmailAddress} \nCategory: {person.Category.Name}");
+        panel.Header = new PanelHeader("** Contact Info **").Centered();
         panel.Padding = new Padding(2, 2, 2, 2);
+        panel.Border=BoxBorder.Heavy;
 
         AnsiConsole.Write(panel);
         Console.WriteLine("Press any key to return to Main Menu");
         Console.ReadLine();
 
         }
-
-    static internal void ShowContactTable(List<Contact> contacts)
+    static internal void ShowPersonsTable(List<Person> persons)
         {
         var table = new Table();
-        table.AddColumn("ID");
-        table.AddColumn("Name");
-        table.AddColumn("Phone Number");
-        table.AddColumn("E-mail Address");
-        table.AddColumn("Category");
+        table.Border = TableBorder.Double;
+        table.AddColumn("ID").Centered();
+        table.AddColumn("Name").Centered();
+        table.AddColumn("Phone Number").Centered();
+        table.AddColumn("E-mail Address").Centered();
+        table.AddColumn("Category").Centered();
 
-        foreach (var contact in contacts)
+        foreach (var person in persons)
             {
             table.AddRow(
-            contact.ContactId.ToString(),
-            contact.Name,
-            contact.PhoneNumber,
-            contact.EmailAddress,
-            contact.Category.Name
-            );
+            person.PersonId.ToString(),
+            person.Name,
+            person.PhoneNumber,
+            person.EmailAddress,
+            person.Category.Name
+            ).Centered();
             }
 
         AnsiConsole.Write(table);
@@ -197,7 +197,6 @@ static internal class UserInterface
         Console.WriteLine("Press any key to continue");
         Console.ReadLine();
         }
-
     internal static void ShowCategoryTable(List<Category> categories)
         {
         var table = new Table();
@@ -217,16 +216,18 @@ static internal class UserInterface
         Console.WriteLine("Press any key to continue");
         Console.ReadLine();
         }
-
     internal static void ShowCategory(Category category)
         {
-        var panel = new Panel($"ID: {category.CategoryId} \nName: {category.Name} \nContact Count: {category.Contacts.Count}");
-        panel.Header = new PanelHeader($"** {category.Name} **");
+        var panel = new Panel($"ID: {category.CategoryId} \nName: {category.Name} \nContact Count: {category.Persons.Count}");
+        panel.Header = new PanelHeader($"** {category.Name} **").Centered();
         panel.Padding = new Padding(2, 2, 2, 2);
+        panel.Border = BoxBorder.Rounded;
+        
 
         AnsiConsole.Write(panel);
 
-        ShowContactTable(category.Contacts);
+        // Convert ICollection<Person> to List<Person> before passing it to ShowPersonsTable
+        ShowPersonsTable(category.Persons.ToList());
 
         Console.WriteLine("Press any key to return to Main Menu");
         Console.ReadLine();

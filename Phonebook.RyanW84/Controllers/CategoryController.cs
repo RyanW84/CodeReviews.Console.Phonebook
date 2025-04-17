@@ -39,7 +39,7 @@ internal class CategoryController
         using var db = new PhonebookDBContext();
 
         var categories = db.Categories
-        .Include(x => x.Contacts)
+        .Include(x => x.Persons)
         .ToList();
 
         return categories;

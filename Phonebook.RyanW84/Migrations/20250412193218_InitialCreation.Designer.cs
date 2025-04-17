@@ -11,8 +11,8 @@ using Phonebook.RyanW84.DataConnection;
 namespace Phonebook.RyanW84.Migrations
 {
     [DbContext(typeof(PhonebookDBContext))]
-    [Migration("20250409112516_Initial-Migration")]
-    partial class InitialMigration
+    [Migration("20250412193218_InitialCreation")]
+    partial class InitialCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,23 +34,42 @@ namespace Phonebook.RyanW84.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "Friends"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Colleagues"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Name = "Customers"
+                        });
                 });
 
-            modelBuilder.Entity("Phonebook.RyanW84.Models.Contact", b =>
+            modelBuilder.Entity("Phonebook.RyanW84.Models.Person", b =>
                 {
-                    b.Property<int>("ContactId")
+                    b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -67,20 +86,20 @@ namespace Phonebook.RyanW84.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ContactId");
+                    b.HasKey("PersonId");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("Phonebook.RyanW84.Models.Contact", b =>
+            modelBuilder.Entity("Phonebook.RyanW84.Models.Person", b =>
                 {
                     b.HasOne("Phonebook.RyanW84.Models.Category", "Category")
-                        .WithMany("Contacts")
+                        .WithMany("Persons")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -90,7 +109,7 @@ namespace Phonebook.RyanW84.Migrations
 
             modelBuilder.Entity("Phonebook.RyanW84.Models.Category", b =>
                 {
-                    b.Navigation("Contacts");
+                    b.Navigation("Persons");
                 });
 #pragma warning restore 612, 618
         }
