@@ -1,36 +1,36 @@
-# Flashcards
+# Phonebook
 
 Welcome to the Phonebook App!
 
 ![icons8-contact-book-512-150x150](https://github.com/user-attachments/assets/c153e447-146d-4e3d-b9b9-7a5522324597)
 
-This is a .NET project designed to demonstrate using SQL Server with Entity Framework to store and retain data, in the form of a Phonebook. The project also features using API's to send an SMS text message and an email!
+This is a .NET project designed to demonstrate the use of SQL Server with Entity Framework to store and retain data in the form of a phonebook. The project also features the use of APIs to send SMS text messages and emails!
 
 Phonebook is a console app using .NET and SQL
-The app comes with some sample data to demonstrate its full functionality, each time the app is run, it will delete the database and create a new one with the sample data. The user can amend or add their own data.
+The app comes with some sample data to demonstrate its full functionality. Each time the app is run, it will delete the database and create a new one with the sample data. The user can amend or add their data.
 
 The front end is a console app.
 There is an integrated SQL Server database in the back end.
 
 ## Requirements
-1) This application fulfils the following The C# Academy - Phonebook App requirements:
+1) This application fulfils the following: The C# Academy - Phonebook App requirements:
 2) This is an application where you should record contacts with their phone numbers.
-3) Users should be able to Add, Delete, Update and Read from a database, using the console.
-4) You need to use Entity Framework, raw SQL isn't allowed.
-5) Your code should contain a base Contact class with AT LEAST {Id INT, Name STRING, Email STRING and Phone Number(STRING)}
+3) Users should be able to add, delete, update, and read from a database, using the console.
+4) You need to use Entity Framework; raw SQL isn't allowed.
+5) Your code should contain a base Contact class with AT LEAST {Id INT, Name STRING, Email STRING, and Phone Number(STRING)}
 6) You should validate e-mails and phone numbers and let the user know what formats are expected
-7) You should use Code-First Approach, which means EF will create the database schema for you.
+7) You should use the Code-First Approach, which means EF will create the database schema for you.
 8)You should use SQL Server, not SQLite
 
 
 ## Challenges
 This project has the following challenges:
 1) Create a functionality that allows users to add the contact's e-mail address and send an e-mail message from the app.
-2) Expand the app by creating categories of contacts (i.e. Family, Friends, Work, etc).
-3) What if you want to send not only e-mails but SMS?
+2) Expand the app by creating categories of contacts (i.e., Family, Friends, Work, etc).
+3) What if you want to send not only e-mails but also SMS?
 
 ## Technologies
-* .NET (.Net 9.0)
+* .NET (.NET 9.0)
 * C# (C# 12.0)
 * SQL Server 2022
 * Entity Framework
@@ -60,9 +60,9 @@ This project has the following challenges:
 * Microsoft.EntityFrameworkCore.Tools Version= 9.0.4
 
 ## What I learned from this project
-1) Configuring Entity Framework to connext to an SQL Server
-2) Configuring Entity Framework to Delete and create tables on loading
-3) Configuring Entity Framework to Create a Database without having to create one first in SQL Server Management Suite
+1) Configuring Entity Framework to connect to an SQL Server
+2) Configuring Entity Framework to delete and create tables on loading
+3) Configuring Entity Framework to Create a Database without having to create one first in SQL Server Management Studio
 4) Using SQL Server Management Suite
 5) SQL Server tools and toolbars in Visual Studio
 6) Validating input using Regex
@@ -71,13 +71,13 @@ This project has the following challenges:
 9) Unit Testing
 10) Microsoft Testing Platform
 11) Managing User Secrets
-12) Creating a passcode in Gmail to allow specific apps to access the account without two factor authentication
+12) Creating a passcode in Gmail to allow specific apps to access the account without two-factor authentication
 13) Using Panels in Spectre Console
-14) Adding more styling such as colours and different borders in Spectre Consoe
+14) Adding more styling, such as colours and different borders, in Spectre Console
 
 ## Getting Started
 # IMPORTANT NOTE:
-* There is data created in the context file, to give you a preview of all the features
+* There is data created in the context file to give you a preview of all the features
 * You will need to create your own Secrets file or add code to add your own credentials for the SMS and SMTP email functionality
 
 ## Prerequisites
@@ -114,10 +114,10 @@ Please refer to the short demonstration below
 ## How It Works
 1) The console app connects to the database and confirms the connection is open
 2) The menu system is presented to the user to make a choice.
-3) Each menu option has a method that performs the function selected, in some cases such as adding an item there will be a User Interface Method to gather the information from the user, and back end method to act on the database
+3) Each menu option has a method that performs the function selected, in some cases, such as adding an item,m there will be a User Interface Method to gather the information from the user, and back end method to act on the database
 4) The data is stored in two tables: Person and Category. They are linked using CategoryID as the Foreign Key (See the Entity Relationship Diagram below)
 5) The app stores and retrieves data from these tables.
-6) The user can perform CRUD operation on the Person and category records
+6) The user can perform CRUD operations on the Person and category records
 7) The user can send text messages
 8) The user can send emails
 9) The app is exited through the Main Menu
