@@ -29,10 +29,10 @@ internal static class ConnectionChecker
             for (int i = 0; i <= 100; i++)
                 {
                 Console.Write($"\rPhonebook App: {i}% loaded");
-                Thread.Sleep(5); //5ms per iteration
+                Thread.Sleep(3); 
                 }
             Console.WriteLine("\nDatabase connection successful!");
-            Thread.Sleep(900);
+            Thread.Sleep(800);
             }
         catch (SqlException ex)
             {

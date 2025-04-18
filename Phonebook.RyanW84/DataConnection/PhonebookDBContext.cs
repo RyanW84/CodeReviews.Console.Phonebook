@@ -65,8 +65,8 @@ internal class PhonebookDBContext : DbContext
                     PersonId = 1,
                     CategoryId = 1,
                     Name = "Ryan Weavers",
-                    PhoneNumber = "+441212111365",
-                    EmailAddress="xox1@oxo.com"
+                    PhoneNumber = "+441215458558",
+                    EmailAddress="xox@pxp.com"
                 },
                  new() {
                     PersonId = 2,

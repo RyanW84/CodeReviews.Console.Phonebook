@@ -35,8 +35,6 @@ graph TD
     Phonebook.RyanW84DataConnectionPhonebookDBContext.csPhonebookDBContext-->|method|Phonebook.RyanW84DataConnectionPhonebookDBContext.csPhonebookDBContextOnModelCreating(OnModelCreating)
     Phonebook.RyanW84-->Phonebook.RyanW84Diagrams[Diagrams]
     Phonebook.RyanW84Diagrams-->Phonebook.RyanW84DiagramsER_Diagram.png((ER Diagram.png))
-    Phonebook.RyanW84Diagrams-->Phonebook.RyanW84DiagramsMermaid_Solution_and_Class_Diagram.png((Mermaid Solution and Class Diagram.png))
-    Phonebook.RyanW84Diagrams-->Phonebook.RyanW84DiagramsPhonebook.RyanW84-solution-structure.mmd((Phonebook.RyanW84-solution-structure.mmd))
     Phonebook.RyanW84-->Phonebook.RyanW84Menu[Menu]
     Phonebook.RyanW84Menu-->Phonebook.RyanW84MenuEnums.cs((Enums.cs))
     Phonebook.RyanW84MenuEnums.cs-->|class|Phonebook.RyanW84MenuEnums.csEnums[Enums]
@@ -46,6 +44,7 @@ graph TD
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceMainMenu(MainMenu)
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfacePersonMenu(PersonMenu)
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceCategoriesMenu(CategoriesMenu)
+    Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceContactMenu(ContactMenu)
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceShowPerson(ShowPerson)
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceShowPersonsTable(ShowPersonsTable)
     Phonebook.RyanW84MenuUserInterface.csUserInterface-->|method|Phonebook.RyanW84MenuUserInterface.csUserInterfaceShowCategoryTable(ShowCategoryTable)
@@ -66,8 +65,6 @@ graph TD
     Phonebook.RyanW84ModelsCategory.cs-->|class|Phonebook.RyanW84ModelsCategory.csCategory[Category]
     Phonebook.RyanW84Models-->Phonebook.RyanW84ModelsPerson.cs((Person.cs))
     Phonebook.RyanW84ModelsPerson.cs-->|class|Phonebook.RyanW84ModelsPerson.csPerson[Person]
-    Phonebook.RyanW84-->Phonebook.RyanW84Phonebook[Phonebook]
-    Phonebook.RyanW84Phonebook-->Phonebook.RyanW84PhonebookRyanW84[RyanW84]
     Phonebook.RyanW84-->Phonebook.RyanW84Services[Services]
     Phonebook.RyanW84Services-->Phonebook.RyanW84ServicesCategoryService.cs((CategoryService.cs))
     Phonebook.RyanW84ServicesCategoryService.cs-->|class|Phonebook.RyanW84ServicesCategoryService.csCategoryService[CategoryService]
@@ -75,8 +72,8 @@ graph TD
     Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceDeleteCategory(DeleteCategory)
     Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceUpdateCategory(UpdateCategory)
     Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceGetCategoryOptionInput(GetCategoryOptionInput)
-    Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceGetCategories(GetCategories)
     Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceGetCategory(GetCategory)
+    Phonebook.RyanW84ServicesCategoryService.csCategoryService-->|method|Phonebook.RyanW84ServicesCategoryService.csCategoryServiceGetCategories(GetCategories)
     Phonebook.RyanW84Services-->Phonebook.RyanW84ServicesPersonService.cs((PersonService.cs))
     Phonebook.RyanW84ServicesPersonService.cs-->|class|Phonebook.RyanW84ServicesPersonService.csPersonService[PersonService]
     Phonebook.RyanW84ServicesPersonService.csPersonService-->|method|Phonebook.RyanW84ServicesPersonService.csPersonServiceInsertPerson(InsertPerson)
