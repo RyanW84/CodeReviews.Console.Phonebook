@@ -50,14 +50,14 @@ This project has the following challenges:
 * Microsoft.Extensions.Logging Version= 9.0.4
 * Microsoft.Extensions.Logging.Console Version= 9.0.4
 * Microsoft.Extensions.Options Version= 9.0.4
-* Newtonsoft.Json" Version = 13.0.3
-* Spectre.Console" Version = 0.50.0
+* Newtonsoft.Json Version = 13.0.3
+* Spectre.Console Version = 0.50.0
 * Twilio Version = 7.10.0
-* LanguageExt.Core" Version = 4.4.9
-* MailKit" Version = 4.11.0
+* LanguageExt.Core Version = 4.4.9
+* MailKit Version = 4.11.0
 * Microsoft.EntityFrameworkCore Version = 9.0.4
-* Microsoft.EntityFrameworkCore.SqlServer Version= 9.0.4
-* Microsoft.EntityFrameworkCore.Tools Version= 9.0.4
+* Microsoft.EntityFrameworkCore.SqlServer Version = 9.0.4
+* Microsoft.EntityFrameworkCore.Tools Version = 9.0.4
 
 ## What I learned from this project
 1) Configuring Entity Framework to connect to an SQL Server
