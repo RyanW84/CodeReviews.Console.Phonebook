@@ -6,6 +6,8 @@ using MimeKit;
 
 using Phonebook.RyanW84.Models;
 
+using Spectre.Console;
+
 namespace Phonebook.RyanW84.API;
 
 internal class EmailPerson
@@ -21,10 +23,10 @@ internal class EmailPerson
         var smtp_username = configuration.GetSection("EmailAPI")["Email:smtp_username"];
         var smtp_password = configuration.GetSection("EmailAPI")["Email:smtp_password"];
 
-
-        Console.WriteLine("Plese enter the Subject line");
+        AnsiConsole.MarkupLine($"[bold]\nSending an Email to: {contact.Name} at {contact.EmailAddress}[/]");
+        AnsiConsole.MarkupLine("[bold]\nPlease enter the Subject line:[/]");
         var subject = Console.ReadLine();
-        Console.WriteLine("Please type your email here (HTML Friendly)");
+        AnsiConsole.MarkupLine("[bold]\nPlease type your email here (HTML Friendly):[/]");
         var body = Console.ReadLine();
 
         email.From.Add(new MailboxAddress("Ryan Weavers", "ryanweavers@gmail.com"));

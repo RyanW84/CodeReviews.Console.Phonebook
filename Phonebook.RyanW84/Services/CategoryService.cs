@@ -11,9 +11,7 @@ internal class CategoryService
         {
         var category = new Category();
         category.Name = AnsiConsole.Ask<string>("Category's name:");
-
         CategoryController.AddCategory(category);
-
         }
     internal static void DeleteCategory()
         {
@@ -23,9 +21,7 @@ internal class CategoryService
     internal static void UpdateCategory()
         {
         var category = GetCategoryOptionInput();
-
         category.Name = AnsiConsole.Ask<string>("Category's new name:");
-
         CategoryController.UpdateCategory(category);
         }
     internal static Category GetCategoryOptionInput()
@@ -39,15 +35,15 @@ internal class CategoryService
 
         return category;
         }
-    internal static void GetCategories()
-        {
-        var categories = CategoryController.GetCategories();
-        UserInterface.UserInterface.ShowCategoryTable(categories);
-        }
     internal static void GetCategory()
         {
         var category = GetCategoryOptionInput();
         UserInterface.UserInterface.ShowCategory(category);
+        }
+    internal static void GetCategories()
+        {
+        var categories = CategoryController.GetCategories();
+        UserInterface.UserInterface.ShowCategoryTable(categories);
         }
     }
 

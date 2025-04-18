@@ -14,7 +14,7 @@ internal class PhonebookDBContext : DbContext
         {
         base.OnConfiguring(optionsBuilder);
         optionsBuilder
-      .UseSqlServer(@"Server=(localdb)\Phonebook; Database = PhonebookDB; initial Catalog=PhonebookDB; Integrated Security=True; TrustServerCertificate=True;")
+      .UseSqlServer(@"Server=(localdb)\MSSQLlocaldb; Database = PhonebookDB; initial Catalog=PhonebookDB; Integrated Security=True; TrustServerCertificate=True;")
           .EnableSensitiveDataLogging()
         .UseLoggerFactory(GetLoggerFactory());
 

@@ -9,7 +9,6 @@ internal class PersonController
     {
     internal static void AddPerson(Person person)
         {
-
         using var db = new PhonebookDBContext();
         db.Add(person);
         db.SaveChanges();
@@ -24,9 +23,7 @@ internal class PersonController
     internal static void UpdatePerson(Person contact)
         {
         using var db = new PhonebookDBContext();
-
         db.Update(contact);
-
         db.SaveChanges();
         }
 

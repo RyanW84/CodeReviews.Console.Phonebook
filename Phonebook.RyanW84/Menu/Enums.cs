@@ -16,39 +16,39 @@ internal class Enums
         }
     internal enum PersonMenuOptions
         {
-        [Display(Name = "Add Person")]
+        [Display(Name = "[DarkSeaGreen2_1]Add Person[/]")]
         AddPerson,
-        [Display(Name = "Delete Person")]
+        [Display(Name = "[DarkSeaGreen2_1]Delete Person[/]")]
         DeletePerson,
-        [Display(Name = "Update Person")]
+        [Display(Name = "[DarkSeaGreen2_1]Update Person[/]")]
         UpdatePerson,
-        [Display(Name = "View Person")]
+        [Display(Name = "[DarkSeaGreen2_1]View Person[/]")]
         ViewPerson,
-        [Display(Name = "View All Persons")]
+        [Display(Name = "[DarkSeaGreen2_1]View All Persons[/]")]
         ViewAllPersons,
-        [Display(Name = "Go Back")]
+        [Display(Name = "[Red3_1]Go Back[/]")]
         GoBack
         }
     internal enum CategoryMenuOptions
         {
-        [Display(Name = "Add Category")]
+        [Display(Name = "[Gold1]Add Category[/]")]
         AddCategory,
-        [Display(Name = "Delete Category")]
+        [Display(Name = "[Gold1]Delete Category[/]")]
         DeleteCategory,
-        [Display(Name = "View Category")]
+        [Display(Name = "[Gold1]View Category[/]")]
         ViewCategory,
-        [Display(Name = "View All Categories")]
+        [Display(Name = "[Gold1]View All Categories[/]")]
         ViewAllCategories,
-        [Display(Name = "Update Category")]
+        [Display(Name = "[Gold1]Update Category[/]")]
         UpdateCategory,
-        [Display(Name = "Go Back")]
+        [Display(Name = "[Red3_1]Go Back[/]")]
         GoBack
         }
     internal enum ContactMenuOptions
         {
-        [Display(Name = "[DarkSeaGreen2_1]Text a contact[/]")]
+        [Display(Name = "[DarkOrange]Text a contact[/]")]
         Text,
-        [Display(Name = "[Gold1]Email a contact[/]")]
+        [Display(Name = "[DarkOrange]Email a contact[/]")]
         Email,
         [Display(Name = "[Red]Go Back[/]")]
         GoBack

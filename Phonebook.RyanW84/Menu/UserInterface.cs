@@ -58,7 +58,7 @@ static internal class UserInterface
                 break;
                 case MainMenuOptions.Quit:
                 isMenuRunning = false;
-                Console.WriteLine("Thank you for using my Phonebook App");
+                Console.WriteLine("Thank you for using Phonebook");
                 break;
                 default:
                 Console.WriteLine("Please enter a correct option");
@@ -78,7 +78,7 @@ static internal class UserInterface
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<PersonMenuOptions>()
-                    .Title("Welcome to Phonebook\nWhat would you like to do?")
+                    .Title("[DarkSeaGreen2_1]Person Menu\nWhat would you like to do?[/]")
                     .AddChoices(Enum.GetValues(typeof(PersonMenuOptions)).Cast<PersonMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
@@ -120,7 +120,7 @@ static internal class UserInterface
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<CategoryMenuOptions>()
-                    .Title("Welcome to Phonebook\nWhat would you like to do?")
+                    .Title("[Gold1]Category Menu\nWhat would you like to do?[/]")
                     .AddChoices(Enum.GetValues(typeof(CategoryMenuOptions)).Cast<CategoryMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
@@ -163,7 +163,7 @@ static internal class UserInterface
             Console.Clear();
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<ContactMenuOptions>()
-                    .Title("[Bold]Welcome to Phonebook\nWhat would you like to do?[/]")
+                    .Title("[DarkOrange]Communications Menu\nWhat would you like to do?[/]")
                     .AddChoices(Enum.GetValues(typeof(ContactMenuOptions)).Cast<ContactMenuOptions>())
                     .UseConverter(choice => GetEnumDisplayName(choice))
             );
@@ -193,9 +193,9 @@ static internal class UserInterface
     internal static void ShowPerson(Person person)
         {
         var panel = new Panel($"ID: {person.PersonId} \nName: {person.Name} \nPhone Number: {person.PhoneNumber} \nE-mail Address: {person.EmailAddress} \nCategory: {person.Category.Name}");
-        panel.Header = new PanelHeader("** Contact Info **").Centered();
+        panel.Header = new PanelHeader("** Contact Info **");
         panel.Padding = new Padding(2, 2, 2, 2);
-        panel.Border = BoxBorder.Heavy;
+        panel.Border = BoxBorder.Double;
 
         AnsiConsole.Write(panel);
         Console.WriteLine("Press any key to return to Main Menu");
@@ -206,11 +206,11 @@ static internal class UserInterface
         {
         var table = new Table();
         table.Border = TableBorder.Double;
-        table.AddColumn("ID").Centered();
-        table.AddColumn("Name").Centered();
-        table.AddColumn("Phone Number").Centered();
-        table.AddColumn("E-mail Address").Centered();
-        table.AddColumn("Category").Centered();
+        table.AddColumn("ID");
+            table.AddColumn("Name");
+        table.AddColumn("Phone Number");
+        table.AddColumn("E-mail Address");
+        table.AddColumn("Category");
 
         foreach (var person in persons)
             {
@@ -220,7 +220,7 @@ static internal class UserInterface
             person.PhoneNumber,
             person.EmailAddress,
             person.Category.Name
-            ).Centered();
+            );
             }
 
         AnsiConsole.Write(table);
@@ -231,6 +231,7 @@ static internal class UserInterface
     internal static void ShowCategoryTable(List<Category> categories)
         {
         var table = new Table();
+        table.Border = TableBorder.Double;
         table.AddColumn("ID");
         table.AddColumn("Name");
 
@@ -250,18 +251,15 @@ static internal class UserInterface
     internal static void ShowCategory(Category category)
         {
         var panel = new Panel($"ID: {category.CategoryId} \nName: {category.Name} \nContact Count: {category.Persons.Count}");
-        panel.Header = new PanelHeader($"** {category.Name} **").Centered();
+        panel.Header = new PanelHeader($"** {category.Name} **");
         panel.Padding = new Padding(2, 2, 2, 2);
-        panel.Border = BoxBorder.Rounded;
+        panel.Border = BoxBorder.Double;
 
 
         AnsiConsole.Write(panel);
 
         // Convert ICollection<Person> to List<Person> before passing it to ShowPersonsTable
         ShowPersonsTable(category.Persons.ToList());
-
-        Console.WriteLine("Press any key to return to Main Menu");
-        Console.ReadLine();
         }
     }
 
