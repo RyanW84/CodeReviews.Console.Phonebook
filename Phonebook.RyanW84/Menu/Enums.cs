@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Phonebook.RyanW84.UserInterface;
+namespace Phonebook.RyanW84.Menu;
 internal class Enums
     {
     internal enum MainMenuOptions

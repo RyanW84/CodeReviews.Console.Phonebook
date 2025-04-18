@@ -7,7 +7,7 @@ public class ContactValidator
     public const string phoneMotif = @"^\+[1-9]\d{1,14}$";
     public const string emailMotif = @"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+";
 
-    public static bool isPhoneNumberValid(string phoneNumber)
+    public static bool IsPhoneNumberValid(string phoneNumber)
         {
         if (phoneNumber != null)
             {
@@ -17,7 +17,7 @@ public class ContactValidator
             return false;
         }
 
-    public static bool isEmailAddressValid(string emailAddress)
+    public static bool IsEmailAddressValid(string emailAddress)
         {
         if (emailAddress != null)
             {
@@ -26,8 +26,6 @@ public class ContactValidator
         else
             return false;
         }
-
-
     }
 
 

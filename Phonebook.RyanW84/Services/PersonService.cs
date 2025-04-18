@@ -1,4 +1,5 @@
 ﻿using Phonebook.RyanW84.Controllers;
+using Phonebook.RyanW84.Menu;
 using Phonebook.RyanW84.Models;
 using Phonebook.RyanW84.Validators;
 
@@ -10,30 +11,32 @@ internal class PersonService
     {
     internal static void InsertPerson()
         {
-        var person = new Person();
-        person.Name = AnsiConsole.Ask<string>("Person's name:");
-        person.PhoneNumber = AnsiConsole.Ask<string>("Person's phone number:(format +441234567891)");
-        person.EmailAddress = AnsiConsole.Ask<string>("Person's E-mail address:");
-        person.CategoryId = CategoryService.
-       GetCategoryOptionInput().CategoryId;
+        Person person = new()
+            {
+            Name = AnsiConsole.Ask<string>("Person's name:"),
+            PhoneNumber = AnsiConsole.Ask<string>("Person's phone number:(format +441234567891)"),
+            EmailAddress = AnsiConsole.Ask<string>("Person's E-mail address:"),
+            CategoryId = CategoryService.
+           GetCategoryOptionInput().CategoryId
+            };
 
         //Validation
-        var phoneValidationResult = ContactValidator.isPhoneNumberValid(person.PhoneNumber);
+        var phoneValidationResult = ContactValidator.IsPhoneNumberValid(person.PhoneNumber);
 
         while (!phoneValidationResult)
             {
             Console.WriteLine("Please check the Phone Number is correct - press any key to try again\n");
             person.PhoneNumber = AnsiConsole.Ask<string>("Person's phone number:(format +441234567891)");
-            phoneValidationResult = ContactValidator.isPhoneNumberValid(person.PhoneNumber);
+            phoneValidationResult = ContactValidator.IsPhoneNumberValid(person.PhoneNumber);
             }
 
-        var emailValidationResult = ContactValidator.isEmailAddressValid(person.EmailAddress);
+        var emailValidationResult = ContactValidator.IsEmailAddressValid(person.EmailAddress);
 
         while (!emailValidationResult)
             {
             Console.WriteLine("Please check the E-mail Address is correct - press any key to try again\n");
             person.PhoneNumber = AnsiConsole.Ask<string>("Person's E-mail address");
-            emailValidationResult = ContactValidator.isEmailAddressValid(person.EmailAddress);
+            emailValidationResult = ContactValidator.IsEmailAddressValid(person.EmailAddress);
             }
 
         PersonController.AddPerson(person);
@@ -71,12 +74,12 @@ internal class PersonService
     internal static void GetPerson()
         {
         var person = GetPersonOptionInput();
-        UserInterface.UserInterface.ShowPerson(person);
+        UserInterface.ShowPerson(person);
         }
     internal static void GetPersons()
         {
         var persons = PersonController.GetPersons();
-        UserInterface.UserInterface.ShowPersonsTable(persons);
+        UserInterface.ShowPersonsTable(persons);
         }
     internal static Person GetPersonOptionInput()
         {

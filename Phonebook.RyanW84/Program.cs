@@ -1,5 +1,5 @@
 ﻿using Phonebook.RyanW84.DataConnection;
-using Phonebook.RyanW84.UserInterface;
+using Phonebook.RyanW84.Menu;
 
 var context = new PhonebookDBContext();
 context.Database.EnsureDeleted();

@@ -6,16 +6,18 @@ namespace Phonebook.RyanW84.DataConnection;
 internal static class ConnectionChecker
     {
    
-    internal static DbContext? _dbContext; 
+    private static DbContext? dbContext;
 
     static ConnectionChecker()
         {
-        _dbContext = new PhonebookDBContext();
+        DbContext = new PhonebookDBContext();
         }
+
+    internal static DbContext DbContext { get => dbContext; set => dbContext = value; }
 
     internal static void TestDatabaseConnection()
         {
-        if (_dbContext == null)
+        if (DbContext == null)
             {
             Console.WriteLine("Database context is not initialized.");
             Console.WriteLine("Press any key to continue");
@@ -24,7 +26,7 @@ internal static class ConnectionChecker
             }
         try
             {
-            using var connection = _dbContext.Database.GetDbConnection();
+            using var connection = DbContext.Database.GetDbConnection();
             connection.Open();
             for (int i = 0; i <= 100; i++)
                 {

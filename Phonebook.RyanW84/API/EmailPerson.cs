@@ -17,7 +17,7 @@ internal class EmailPerson
         {
         var email = new MimeMessage();
 
-        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+        ConfigurationBuilder configurationBuilder = new ();
         IConfiguration configuration = configurationBuilder.AddUserSecrets<EmailPerson>().Build();
 
         var smtp_username = configuration.GetSection("EmailAPI")["Email:smtp_username"];
@@ -37,12 +37,10 @@ internal class EmailPerson
             Text = $"{body}"
             };
 
-        using (var smtp = new SmtpClient())
-            {
-            smtp.Connect("smtp.gmail.com", 587, false);
-            smtp.Authenticate(smtp_username, smtp_password);
-            smtp.Send(email);
-            smtp.Disconnect(true);
-            }
+        using SmtpClient smtp = new();
+        smtp.Connect("smtp.gmail.com", 587, false);
+        smtp.Authenticate(smtp_username, smtp_password);
+        smtp.Send(email);
+        smtp.Disconnect(true);
         }
     }

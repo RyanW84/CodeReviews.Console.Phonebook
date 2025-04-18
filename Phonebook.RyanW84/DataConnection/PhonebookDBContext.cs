@@ -20,7 +20,7 @@ internal class PhonebookDBContext : DbContext
 
         }
 
-    private ILoggerFactory GetLoggerFactory()
+    private static ILoggerFactory GetLoggerFactory()
         {
         var loggerFactory = LoggerFactory.Create(builder =>
         {

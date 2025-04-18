@@ -5,9 +5,10 @@ using Phonebook.RyanW84.Services;
 
 using Spectre.Console;
 
-using static Phonebook.RyanW84.UserInterface.Enums;
+using static Phonebook.RyanW84.Menu.Enums;
 
-namespace Phonebook.RyanW84.UserInterface;
+
+namespace Phonebook.RyanW84.Menu;
 
 static internal class UserInterface
     {
@@ -15,7 +16,7 @@ static internal class UserInterface
     //Menu Methods
     private static string GetEnumDisplayName(Enum enumValue) //Enums weren't showing their display name, this fixes it
         {
-        var displayAttribute =
+        DisplayAttribute displayAttribute =
             enumValue
                 .GetType()
                 .GetField(enumValue.ToString())
@@ -38,6 +39,7 @@ static internal class UserInterface
         while (isMenuRunning)
             {
             Console.Clear();
+         
             var usersChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<MainMenuOptions>()
                     .Title("[Bold]Welcome to Phonebook\nWhat would you like to do?[/]")
@@ -192,10 +194,12 @@ static internal class UserInterface
     //Helpers
     internal static void ShowPerson(Person person)
         {
-        var panel = new Panel($"ID: {person.PersonId} \nName: {person.Name} \nPhone Number: {person.PhoneNumber} \nE-mail Address: {person.EmailAddress} \nCategory: {person.Category.Name}");
-        panel.Header = new PanelHeader("** Contact Info **");
-        panel.Padding = new Padding(2, 2, 2, 2);
-        panel.Border = BoxBorder.Double;
+        Panel panel = new($"ID: {person.PersonId} \nName: {person.Name} \nPhone Number: {person.PhoneNumber} \nE-mail Address: {person.EmailAddress} \nCategory: {person.Category.Name}")
+            {
+            Header = new PanelHeader("** Contact Info **"),
+            Padding = new Padding(2, 2, 2, 2),
+            Border = BoxBorder.Double
+            };
 
         AnsiConsole.Write(panel);
         Console.WriteLine("Press any key to return to Main Menu");
@@ -204,10 +208,12 @@ static internal class UserInterface
         }
     static internal void ShowPersonsTable(List<Person> persons)
         {
-        var table = new Table();
-        table.Border = TableBorder.Double;
+        Table table = new()
+            {
+            Border = TableBorder.Double
+            };
         table.AddColumn("ID");
-            table.AddColumn("Name");
+        table.AddColumn("Name");
         table.AddColumn("Phone Number");
         table.AddColumn("E-mail Address");
         table.AddColumn("Category");
@@ -230,8 +236,10 @@ static internal class UserInterface
         }
     internal static void ShowCategoryTable(List<Category> categories)
         {
-        var table = new Table();
-        table.Border = TableBorder.Double;
+        Table table = new()
+            {
+            Border = TableBorder.Double
+            };
         table.AddColumn("ID");
         table.AddColumn("Name");
 
@@ -250,16 +258,18 @@ static internal class UserInterface
         }
     internal static void ShowCategory(Category category)
         {
-        var panel = new Panel($"ID: {category.CategoryId} \nName: {category.Name} \nContact Count: {category.Persons.Count}");
-        panel.Header = new PanelHeader($"** {category.Name} **");
-        panel.Padding = new Padding(2, 2, 2, 2);
-        panel.Border = BoxBorder.Double;
+        Panel panel = new($"ID: {category.CategoryId} \nName: {category.Name} \nContact Count: {category.Persons.Count}")
+            {
+            Header = new PanelHeader($"** {category.Name} **"),
+            Padding = new Padding(2, 2, 2, 2),
+            Border = BoxBorder.Double
+            };
 
 
         AnsiConsole.Write(panel);
 
         // Convert ICollection<Person> to List<Person> before passing it to ShowPersonsTable
-        ShowPersonsTable(category.Persons.ToList());
+        ShowPersonsTable([.. category.Persons]);
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using Phonebook.RyanW84.Controllers;
+using Phonebook.RyanW84.Menu;
 using Phonebook.RyanW84.Models;
 
 using Spectre.Console;
@@ -9,8 +10,10 @@ internal class CategoryService
     {
     internal static void InsertCategory()
         {
-        var category = new Category();
-        category.Name = AnsiConsole.Ask<string>("Category's name:");
+        Category category = new()
+            {
+            Name = AnsiConsole.Ask<string>("Category's name:")
+            };
         CategoryController.AddCategory(category);
         }
     internal static void DeleteCategory()
@@ -38,12 +41,12 @@ internal class CategoryService
     internal static void GetCategory()
         {
         var category = GetCategoryOptionInput();
-        UserInterface.UserInterface.ShowCategory(category);
+        UserInterface.ShowCategory(category);
         }
     internal static void GetCategories()
         {
         var categories = CategoryController.GetCategories();
-        UserInterface.UserInterface.ShowCategoryTable(categories);
+        UserInterface.ShowCategoryTable(categories);
         }
     }
 

@@ -11,7 +11,7 @@ namespace Phonebook.RyanW84.API
         {
         internal static void Text(Person contact)
             {
-            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            ConfigurationBuilder configurationBuilder = new();
             IConfiguration configuration = configurationBuilder.AddUserSecrets<EmailPerson>().Build();
 
             var accountSID = configuration.GetSection("TextAPI")["Text:accountSID"];
