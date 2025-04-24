@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Faker;
 
 using Phonebook.RyanW84.Models;
 
@@ -58,54 +59,22 @@ internal class PhonebookDBContext : DbContext
                     Name = "Customers"
                 }
             });
-        modelBuilder.Entity<Person>()
-      .HasData(new List<Person>
-      {
+        for (int i = 1; i <= 30; i++)
+        {
+            Random random = new Random();
+            modelBuilder.Entity<Person>()
+   .HasData(new List<Person>
+   {
                 new() {
-                    PersonId = 1,
-                    CategoryId = 1,
-                    Name = "Ryan Weavers",
-                    PhoneNumber = "+441215458558",
-                    EmailAddress="xox@pxp.com"
-                },
-                 new() {
-                    PersonId = 2,
-                    CategoryId = 1,
-                    Name = "Ruth Weavers",
-                    PhoneNumber = "+441212111364",
-                    EmailAddress="xox2@oxo.com"
-                },
-                    new() {
-                    PersonId = 3,
-                    CategoryId = 2,
-                    Name = "Pablo DeSouza",
-                    PhoneNumber = "+441212111363",
-                    EmailAddress="xox4@oxo.com"
-                },
-                    new() {
-                    PersonId = 4,
-                    CategoryId = 3,
-                    Name = "Adam Smith",
-                    PhoneNumber = "+441212111362",
-                    EmailAddress="xox5@oxo.com"
-                },
-                     new() {
-                    PersonId = 6,
-                    CategoryId = 4,
-                    Name = "Adam Jones",
-                    PhoneNumber = "+441212111360",
-                    EmailAddress="xox6@oxo.com"
-                },
-                 new() {
-                    PersonId = 5,
-                    CategoryId = 1,
-                    Name = "Joshy Weavers",
-                    PhoneNumber = "+441212111361",
-                    EmailAddress="xox3@oxo.com"
+                    PersonId = i,
+                    CategoryId = random.Next(1, 5),
+                    Name = Faker.Name.FullName(),
+                    PhoneNumber = Faker.Phone.Number(),
+                    EmailAddress= Faker.Internet.Email(),
                 }
-          });
-
+   });
         }
     }
+}
 
 
