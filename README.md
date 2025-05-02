@@ -7,24 +7,25 @@ Welcome to the Phonebook App!
 This is a .NET project designed to demonstrate the use of SQL Server with Entity Framework to store and retain data in the form of a phonebook. The project also features the use of APIs to send SMS text messages and emails!
 
 Phonebook is a console app using .NET and SQL
-The app comes with some sample data to demonstrate its full functionality. Each time the app is run, it will delete the database and create a new one with the sample data. The user can amend or add their data.
+The app comes with some sample data to demonstrate its full functionality. Each time the app is run, it will delete the database and create a new one with the sample data. The user can amend or add their own data.
 
 The front end is a console app.
 There is an integrated SQL Server database in the back end.
 
 ## Requirements
-1) This application fulfils the following: The C# Academy - Phonebook App requirements:
-2) This is an application where you should record contacts with their phone numbers.
-3) Users should be able to add, delete, update, and read from a database, using the console.
-4) You need to use Entity Framework; raw SQL isn't allowed.
-5) Your code should contain a base Contact class with AT LEAST {Id INT, Name STRING, Email STRING, and Phone Number(STRING)}
-6) You should validate e-mails and phone numbers and let the user know what formats are expected
-7) You should use the Code-First Approach, which means EF will create the database schema for you.
-8)You should use SQL Server, not SQLite
+### This application fulfils the following: The C# Academy - Phonebook App requirements:
 
+1) This is an application where you should record contacts with their phone numbers.
+2) Users should be able to add, delete, update, and read from a database, using the console.
+3) You need to use Entity Framework; raw SQL isn't allowed.
+4) Your code should contain a base Contact class with AT LEAST {Id INT, Name STRING, Email STRING, and Phone Number(STRING)}
+5) You should validate e-mails and phone numbers and let the user know what formats are expected
+6) You should use the Code-First Approach, which means EF will create the database schema for you.
+7) You should use SQL Server, not SQLite
 
 ## Challenges
-This project has the following challenges:
+### This project has the following challenges:
+
 1) Create a functionality that allows users to add the contact's e-mail address and send an e-mail message from the app.
 2) Expand the app by creating categories of contacts (i.e., Family, Friends, Work, etc).
 3) What if you want to send not only e-mails but also SMS?
@@ -99,7 +100,7 @@ Build the application using the .NET CLI:
 
 dotnet build
 
-##Running the Application
+## Running the Application
  You can run the Application from Visual Studio.
 OR
 Run using the .NET CLI in the folder you have chosen when cloning
